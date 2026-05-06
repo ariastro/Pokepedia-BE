@@ -6,6 +6,7 @@ import dev.sws.sample_pokedex.entity.Pokemon
 
 fun PokemonRequest.toEntity(): Pokemon {
     return Pokemon(
+        pokemonNumber = pokemonNumber,
         name = name,
         type = type,
         type2 = type2,
@@ -19,6 +20,7 @@ fun Pokemon.toResponse(): PokemonResponse {
 
     return PokemonResponse(
         id = id,
+        pokemonNumber = pokemonNumber,
         name = name,
         types = typeList,
         description = description,

@@ -1,7 +1,6 @@
 package dev.sws.sample_pokedex.service
 
-import dev.sws.sample_pokedex.core.response.PaginatedResponse
-import dev.sws.sample_pokedex.dto.PageMeta
+import dev.sws.sample_pokedex.core.response.PageMeta
 import dev.sws.sample_pokedex.dto.PokemonRequest
 import dev.sws.sample_pokedex.dto.PokemonResponse
 import dev.sws.sample_pokedex.exception.PokemonNotFoundException
@@ -19,14 +18,15 @@ class PokemonService(
 ) {
 
     fun getAllPokemon(page: Int, size: Int): Pair<List<PokemonResponse>, PageMeta> {
-        val pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id")
+        val springPage = if (page > 0) page - 1 else 0
 
+        val pageable = PageRequest.of(springPage, size, Sort.by("id").ascending())
         val pokemonPage = pokemonRepository.findAll(pageable)
 
         val dataList = pokemonPage.content.map { it.toResponse() }
 
         val meta = PageMeta(
-            currentPage = pokemonPage.number,
+            currentPage = springPage + 1,
             totalPages = pokemonPage.totalPages,
             totalElements = pokemonPage.totalElements,
             hasNext = pokemonPage.hasNext()
@@ -51,6 +51,7 @@ class PokemonService(
     fun updatePokemon(id: Long, request: PokemonRequest): PokemonResponse {
         val existingPokemon = pokemonRepository.findByIdOrNull(id) ?: throw PokemonNotFoundException("Pokemon with id $id not found")
 
+        existingPokemon.pokemonNumber = request.pokemonNumber
         existingPokemon.name = request.name
         existingPokemon.type = request.type
         existingPokemon.type2 = request.type2

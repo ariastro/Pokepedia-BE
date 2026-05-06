@@ -19,4 +19,24 @@ class GlobalExceptionHandler {
         return ResponseEntity(response, HttpStatus.NOT_FOUND)
     }
 
+    @ExceptionHandler(UnauthorizedException::class)
+    fun handleUnauthorizedException(ex: UnauthorizedException): ResponseEntity<BaseResponse<Nothing>> {
+        val response = BaseResponse(
+            success = false,
+            message = ex.message ?: "Unauthorized",
+            data = null
+        )
+        return ResponseEntity(response, HttpStatus.UNAUTHORIZED)
+    }
+
+    @ExceptionHandler(Exception::class)
+    fun handleGenericException(ex: Exception): ResponseEntity<BaseResponse<Nothing>> {
+        val response = BaseResponse(
+            success = false,
+            message = ex.message ?: "An unexpected internal server error occurred.",
+            data = null
+        )
+        return ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
+
 }

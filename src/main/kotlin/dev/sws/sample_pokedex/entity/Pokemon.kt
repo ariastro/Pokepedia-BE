@@ -10,6 +10,7 @@ class Pokemon(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
+    var pokemonNumber: Int,
     var name: String,
     var type: String,
     var type2: String? = null,
