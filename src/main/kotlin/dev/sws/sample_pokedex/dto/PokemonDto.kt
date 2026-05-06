@@ -1,9 +1,10 @@
 package dev.sws.sample_pokedex.dto
 
-data class PokemonResponse(
-    val pokemonNumber: Int,
+data class PokemonDto(
     val id: Long,
+    val pokemonNumber: Int,
     val name: String,
     val types: List<String>,
-    val description: String
+    val imageUrl: String,
+    val generation: Int
 )

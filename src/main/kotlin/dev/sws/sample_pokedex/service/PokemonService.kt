@@ -1,15 +1,19 @@
 package dev.sws.sample_pokedex.service
 
 import dev.sws.sample_pokedex.core.response.PageMeta
+import dev.sws.sample_pokedex.dto.PokemonDetailDto
+import dev.sws.sample_pokedex.dto.PokemonDto
 import dev.sws.sample_pokedex.dto.PokemonRequest
-import dev.sws.sample_pokedex.dto.PokemonResponse
+import dev.sws.sample_pokedex.entity.PokemonAbility
+import dev.sws.sample_pokedex.entity.PokemonDetail
+import dev.sws.sample_pokedex.entity.PokemonEvolution
 import dev.sws.sample_pokedex.exception.PokemonNotFoundException
+import dev.sws.sample_pokedex.mapper.toDetailResponse
 import dev.sws.sample_pokedex.mapper.toEntity
 import dev.sws.sample_pokedex.mapper.toResponse
 import dev.sws.sample_pokedex.repository.PokemonRepository
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -17,11 +21,16 @@ class PokemonService(
     private val pokemonRepository: PokemonRepository,
 ) {
 
-    fun getAllPokemon(page: Int, size: Int): Pair<List<PokemonResponse>, PageMeta> {
+    fun getAllPokemon(page: Int, size: Int, search: String?): Pair<List<PokemonDto>, PageMeta> {
         val springPage = if (page > 0) page - 1 else 0
 
-        val pageable = PageRequest.of(springPage, size, Sort.by("id").ascending())
-        val pokemonPage = pokemonRepository.findAll(pageable)
+        val pageable = PageRequest.of(springPage, size, Sort.by("pokemonNumber").ascending())
+
+        val pokemonPage = if (search.isNullOrEmpty()) {
+            pokemonRepository.findAll(pageable)
+        } else {
+            pokemonRepository.findByNameContainingIgnoreCase(search, pageable)
+        }
 
         val dataList = pokemonPage.content.map { it.toResponse() }
 
@@ -35,37 +44,102 @@ class PokemonService(
         return dataList to meta
     }
 
-    fun getPokemonById(id: Long): PokemonResponse {
-        val pokemon = pokemonRepository.findByIdOrNull(id)
-            ?: throw PokemonNotFoundException("Pokemon with id $id not found")
+    fun getPokemonDetails(id: Int): PokemonDetailDto {
+        val pokemon = pokemonRepository.findByPokemonNumber(id)
+            ?: throw PokemonNotFoundException("Pokemon with ID $id was not found.")
 
-        return pokemon.toResponse()
+        return pokemon.toDetailResponse()
     }
 
-    fun addPokemon(request: PokemonRequest): PokemonResponse {
-        val entityToSave = request.toEntity()
-        val savedEntity = pokemonRepository.save(entityToSave)
+    fun getPokemonDetails(pokemon: String): PokemonDetailDto {
+        val pokemon = pokemonRepository.findByNameIgnoreCase(pokemon)
+            ?: throw PokemonNotFoundException("Pokemon $pokemon was not found.")
+
+        return pokemon.toDetailResponse()
+    }
+
+    fun addPokemon(request: PokemonRequest): PokemonDto {
+        val newPokemon = request.toEntity()
+
+        if (request.evolutions.isNotEmpty()) {
+            val mappedEvolutions = request.evolutions.mapNotNull { evoReq ->
+                val targetPokemon = pokemonRepository.findByPokemonNumber(evoReq.evolvedPokemonNumber)
+
+                if (targetPokemon != null) {
+                    PokemonEvolution(
+                        evolutionTrigger = evoReq.triggerMethod,
+                        triggerValue = evoReq.triggerValue,
+                        basePokemon = newPokemon,
+                        evolvedPokemon = targetPokemon
+                    )
+                } else {
+                    null
+                }
+            }.toMutableList()
+            newPokemon.evolutions = mappedEvolutions
+        }
+
+        val savedEntity = pokemonRepository.save(newPokemon)
         return savedEntity.toResponse()
     }
 
-    fun updatePokemon(id: Long, request: PokemonRequest): PokemonResponse {
-        val existingPokemon = pokemonRepository.findByIdOrNull(id) ?: throw PokemonNotFoundException("Pokemon with id $id not found")
+    fun updatePokemon(id: Int, request: PokemonRequest): PokemonDto {
+        val existingPokemon = pokemonRepository.findByPokemonNumber(id)
+            ?: throw PokemonNotFoundException("Pokemon with ID $id was not found.")
 
         existingPokemon.pokemonNumber = request.pokemonNumber
         existingPokemon.name = request.name
         existingPokemon.type = request.type
         existingPokemon.type2 = request.type2
-        existingPokemon.description = request.description
+        existingPokemon.imageUrl = request.imageUrl
+        existingPokemon.generation = request.generation
+
+        if (existingPokemon.detail != null) {
+            existingPokemon.detail!!.description = request.description
+            existingPokemon.detail!!.height = request.height
+            existingPokemon.detail!!.weight = request.weight
+            existingPokemon.detail!!.speciesCategory = request.speciesCategory
+        } else {
+            val newDetail = PokemonDetail(
+                description = request.description,
+                height = request.height,
+                weight = request.weight,
+                speciesCategory = request.speciesCategory,
+                pokemon = existingPokemon
+            )
+            existingPokemon.detail = newDetail
+        }
+
+        existingPokemon.abilities.clear()
+        existingPokemon.abilities.addAll(
+            request.abilities.map {
+                PokemonAbility(name = it.name, isHidden = it.isHidden, pokemon = existingPokemon)
+            }
+        )
+
+        existingPokemon.evolutions.clear()
+        existingPokemon.evolutions.addAll(
+            request.evolutions.mapNotNull { evoReq ->
+                val targetPokemon = pokemonRepository.findByPokemonNumber(evoReq.evolvedPokemonNumber)
+                if (targetPokemon != null) {
+                    PokemonEvolution(
+                        evolutionTrigger = evoReq.triggerMethod,
+                        triggerValue = evoReq.triggerValue,
+                        basePokemon = existingPokemon,
+                        evolvedPokemon = targetPokemon
+                    )
+                } else null
+            }
+        )
 
         val updatedEntity = pokemonRepository.save(existingPokemon)
-
         return updatedEntity.toResponse()
     }
 
-    fun deletePokemonById(id: Long) {
-        if (!pokemonRepository.existsById(id)) {
-            throw PokemonNotFoundException("Pokemon with id $id not found")
-        }
-        pokemonRepository.deleteById(id)
+    fun deletePokemonById(id: Int) {
+        val pokemon = pokemonRepository.findByPokemonNumber(id)
+            ?: throw RuntimeException("Pokemon with number $id was not found.")
+
+        pokemonRepository.delete(pokemon)
     }
 }

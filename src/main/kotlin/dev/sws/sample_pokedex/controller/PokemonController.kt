@@ -1,8 +1,9 @@
 package dev.sws.sample_pokedex.controller
 
 import dev.sws.sample_pokedex.core.response.BaseResponse
+import dev.sws.sample_pokedex.dto.PokemonDetailDto
 import dev.sws.sample_pokedex.dto.PokemonRequest
-import dev.sws.sample_pokedex.dto.PokemonResponse
+import dev.sws.sample_pokedex.dto.PokemonDto
 import dev.sws.sample_pokedex.service.PokemonService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -15,9 +16,10 @@ class PokemonController(val pokemonService: PokemonService) {
     fun getAll(
         @RequestParam(defaultValue = "1") page: Int,
         @RequestParam(defaultValue = "10") size: Int,
-    ): BaseResponse<List<PokemonResponse>> {
+        @RequestParam(required = false) search: String?
+    ): BaseResponse<List<PokemonDto>> {
 
-        val (data, meta) = pokemonService.getAllPokemon(page, size)
+        val (data, meta) = pokemonService.getAllPokemon(page, size, search)
 
         return BaseResponse(
             success = true,
@@ -27,18 +29,27 @@ class PokemonController(val pokemonService: PokemonService) {
         )
     }
 
-    @GetMapping("/{id}")
-    fun getById(@PathVariable id: Long): BaseResponse<PokemonResponse> {
+    @GetMapping("/{identifier}")
+    fun getPokemonDetailsById(@PathVariable identifier: String): BaseResponse<PokemonDetailDto> {
+        val isNumber = identifier.all { it.isDigit() }
+
+        val data = if (isNumber) {
+            val id = identifier.toInt()
+            pokemonService.getPokemonDetails(id)
+        } else {
+            pokemonService.getPokemonDetails(identifier)
+        }
+
         return BaseResponse(
             success = true,
             message = "OK",
-            data = pokemonService.getPokemonById(id)
+            data = data
         )
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody request: PokemonRequest): BaseResponse<PokemonResponse> {
+    fun create(@RequestBody request: PokemonRequest): BaseResponse<PokemonDto> {
         return BaseResponse(
             success = true,
             message = "OK",
@@ -47,7 +58,7 @@ class PokemonController(val pokemonService: PokemonService) {
     }
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody request: PokemonRequest): BaseResponse<PokemonResponse> {
+    fun update(@PathVariable id: Int, @RequestBody request: PokemonRequest): BaseResponse<PokemonDto> {
         val data = pokemonService.updatePokemon(id, request)
         return BaseResponse(
             success = true,
@@ -57,7 +68,7 @@ class PokemonController(val pokemonService: PokemonService) {
     }
 
     @DeleteMapping
-    fun delete(id: Long): BaseResponse<Nothing> {
+    fun delete(id: Int): BaseResponse<Nothing> {
         pokemonService.deletePokemonById(id)
         return BaseResponse(
             success = true,
