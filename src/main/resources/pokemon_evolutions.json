@@ -1,0 +1,434 @@
+[
+  {
+    "from_pokemon_number": 1,
+    "to_pokemon_number": 2,
+    "evolution_trigger": "Level up",
+    "trigger_value": "16"
+  },
+  {
+    "from_pokemon_number": 2,
+    "to_pokemon_number": 3,
+    "evolution_trigger": "Level up",
+    "trigger_value": "32"
+  },
+  {
+    "from_pokemon_number": 4,
+    "to_pokemon_number": 5,
+    "evolution_trigger": "Level up",
+    "trigger_value": "16"
+  },
+  {
+    "from_pokemon_number": 5,
+    "to_pokemon_number": 6,
+    "evolution_trigger": "Level up",
+    "trigger_value": "36"
+  },
+  {
+    "from_pokemon_number": 7,
+    "to_pokemon_number": 8,
+    "evolution_trigger": "Level up",
+    "trigger_value": "16"
+  },
+  {
+    "from_pokemon_number": 8,
+    "to_pokemon_number": 9,
+    "evolution_trigger": "Level up",
+    "trigger_value": "36"
+  },
+  {
+    "from_pokemon_number": 10,
+    "to_pokemon_number": 11,
+    "evolution_trigger": "Level up",
+    "trigger_value": "7"
+  },
+  {
+    "from_pokemon_number": 11,
+    "to_pokemon_number": 12,
+    "evolution_trigger": "Level up",
+    "trigger_value": "10"
+  },
+  {
+    "from_pokemon_number": 13,
+    "to_pokemon_number": 14,
+    "evolution_trigger": "Level up",
+    "trigger_value": "7"
+  },
+  {
+    "from_pokemon_number": 14,
+    "to_pokemon_number": 15,
+    "evolution_trigger": "Level up",
+    "trigger_value": "10"
+  },
+  {
+    "from_pokemon_number": 16,
+    "to_pokemon_number": 17,
+    "evolution_trigger": "Level up",
+    "trigger_value": "18"
+  },
+  {
+    "from_pokemon_number": 17,
+    "to_pokemon_number": 18,
+    "evolution_trigger": "Level up",
+    "trigger_value": "36"
+  },
+  {
+    "from_pokemon_number": 19,
+    "to_pokemon_number": 20,
+    "evolution_trigger": "Level up",
+    "trigger_value": "20"
+  },
+  {
+    "from_pokemon_number": 21,
+    "to_pokemon_number": 22,
+    "evolution_trigger": "Level up",
+    "trigger_value": "20"
+  },
+  {
+    "from_pokemon_number": 23,
+    "to_pokemon_number": 24,
+    "evolution_trigger": "Level up",
+    "trigger_value": "22"
+  },
+  {
+    "from_pokemon_number": 25,
+    "to_pokemon_number": 26,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Thunder stone"
+  },
+  {
+    "from_pokemon_number": 27,
+    "to_pokemon_number": 28,
+    "evolution_trigger": "Level up",
+    "trigger_value": "22"
+  },
+  {
+    "from_pokemon_number": 29,
+    "to_pokemon_number": 30,
+    "evolution_trigger": "Level up",
+    "trigger_value": "16"
+  },
+  {
+    "from_pokemon_number": 30,
+    "to_pokemon_number": 31,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Moon stone"
+  },
+  {
+    "from_pokemon_number": 32,
+    "to_pokemon_number": 33,
+    "evolution_trigger": "Level up",
+    "trigger_value": "16"
+  },
+  {
+    "from_pokemon_number": 33,
+    "to_pokemon_number": 34,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Moon stone"
+  },
+  {
+    "from_pokemon_number": 35,
+    "to_pokemon_number": 36,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Moon stone"
+  },
+  {
+    "from_pokemon_number": 37,
+    "to_pokemon_number": 38,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Fire stone"
+  },
+  {
+    "from_pokemon_number": 39,
+    "to_pokemon_number": 40,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Moon stone"
+  },
+  {
+    "from_pokemon_number": 41,
+    "to_pokemon_number": 42,
+    "evolution_trigger": "Level up",
+    "trigger_value": "22"
+  },
+  {
+    "from_pokemon_number": 43,
+    "to_pokemon_number": 44,
+    "evolution_trigger": "Level up",
+    "trigger_value": "21"
+  },
+  {
+    "from_pokemon_number": 44,
+    "to_pokemon_number": 45,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Leaf stone"
+  },
+  {
+    "from_pokemon_number": 46,
+    "to_pokemon_number": 47,
+    "evolution_trigger": "Level up",
+    "trigger_value": "24"
+  },
+  {
+    "from_pokemon_number": 48,
+    "to_pokemon_number": 49,
+    "evolution_trigger": "Level up",
+    "trigger_value": "31"
+  },
+  {
+    "from_pokemon_number": 50,
+    "to_pokemon_number": 51,
+    "evolution_trigger": "Level up",
+    "trigger_value": "26"
+  },
+  {
+    "from_pokemon_number": 52,
+    "to_pokemon_number": 53,
+    "evolution_trigger": "Level up",
+    "trigger_value": "28"
+  },
+  {
+    "from_pokemon_number": 54,
+    "to_pokemon_number": 55,
+    "evolution_trigger": "Level up",
+    "trigger_value": "33"
+  },
+  {
+    "from_pokemon_number": 56,
+    "to_pokemon_number": 57,
+    "evolution_trigger": "Level up",
+    "trigger_value": "28"
+  },
+  {
+    "from_pokemon_number": 58,
+    "to_pokemon_number": 59,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Fire stone"
+  },
+  {
+    "from_pokemon_number": 60,
+    "to_pokemon_number": 61,
+    "evolution_trigger": "Level up",
+    "trigger_value": "25"
+  },
+  {
+    "from_pokemon_number": 61,
+    "to_pokemon_number": 62,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Water stone"
+  },
+  {
+    "from_pokemon_number": 63,
+    "to_pokemon_number": 64,
+    "evolution_trigger": "Level up",
+    "trigger_value": "16"
+  },
+  {
+    "from_pokemon_number": 64,
+    "to_pokemon_number": 65,
+    "evolution_trigger": "Trade",
+    "trigger_value": ""
+  },
+  {
+    "from_pokemon_number": 66,
+    "to_pokemon_number": 67,
+    "evolution_trigger": "Level up",
+    "trigger_value": "28"
+  },
+  {
+    "from_pokemon_number": 67,
+    "to_pokemon_number": 68,
+    "evolution_trigger": "Trade",
+    "trigger_value": ""
+  },
+  {
+    "from_pokemon_number": 69,
+    "to_pokemon_number": 70,
+    "evolution_trigger": "Level up",
+    "trigger_value": "21"
+  },
+  {
+    "from_pokemon_number": 70,
+    "to_pokemon_number": 71,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Leaf stone"
+  },
+  {
+    "from_pokemon_number": 72,
+    "to_pokemon_number": 73,
+    "evolution_trigger": "Level up",
+    "trigger_value": "30"
+  },
+  {
+    "from_pokemon_number": 74,
+    "to_pokemon_number": 75,
+    "evolution_trigger": "Level up",
+    "trigger_value": "25"
+  },
+  {
+    "from_pokemon_number": 75,
+    "to_pokemon_number": 76,
+    "evolution_trigger": "Trade",
+    "trigger_value": ""
+  },
+  {
+    "from_pokemon_number": 77,
+    "to_pokemon_number": 78,
+    "evolution_trigger": "Level up",
+    "trigger_value": "40"
+  },
+  {
+    "from_pokemon_number": 79,
+    "to_pokemon_number": 80,
+    "evolution_trigger": "Level up",
+    "trigger_value": "37"
+  },
+  {
+    "from_pokemon_number": 81,
+    "to_pokemon_number": 82,
+    "evolution_trigger": "Level up",
+    "trigger_value": "30"
+  },
+  {
+    "from_pokemon_number": 84,
+    "to_pokemon_number": 85,
+    "evolution_trigger": "Level up",
+    "trigger_value": "31"
+  },
+  {
+    "from_pokemon_number": 86,
+    "to_pokemon_number": 87,
+    "evolution_trigger": "Level up",
+    "trigger_value": "34"
+  },
+  {
+    "from_pokemon_number": 88,
+    "to_pokemon_number": 89,
+    "evolution_trigger": "Level up",
+    "trigger_value": "38"
+  },
+  {
+    "from_pokemon_number": 90,
+    "to_pokemon_number": 91,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Water stone"
+  },
+  {
+    "from_pokemon_number": 92,
+    "to_pokemon_number": 93,
+    "evolution_trigger": "Level up",
+    "trigger_value": "25"
+  },
+  {
+    "from_pokemon_number": 93,
+    "to_pokemon_number": 94,
+    "evolution_trigger": "Trade",
+    "trigger_value": ""
+  },
+  {
+    "from_pokemon_number": 96,
+    "to_pokemon_number": 97,
+    "evolution_trigger": "Level up",
+    "trigger_value": "26"
+  },
+  {
+    "from_pokemon_number": 98,
+    "to_pokemon_number": 99,
+    "evolution_trigger": "Level up",
+    "trigger_value": "28"
+  },
+  {
+    "from_pokemon_number": 100,
+    "to_pokemon_number": 101,
+    "evolution_trigger": "Level up",
+    "trigger_value": "30"
+  },
+  {
+    "from_pokemon_number": 102,
+    "to_pokemon_number": 103,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Leaf stone"
+  },
+  {
+    "from_pokemon_number": 104,
+    "to_pokemon_number": 105,
+    "evolution_trigger": "Level up",
+    "trigger_value": "28"
+  },
+  {
+    "from_pokemon_number": 109,
+    "to_pokemon_number": 110,
+    "evolution_trigger": "Level up",
+    "trigger_value": "35"
+  },
+  {
+    "from_pokemon_number": 111,
+    "to_pokemon_number": 112,
+    "evolution_trigger": "Level up",
+    "trigger_value": "42"
+  },
+  {
+    "from_pokemon_number": 116,
+    "to_pokemon_number": 117,
+    "evolution_trigger": "Level up",
+    "trigger_value": "32"
+  },
+  {
+    "from_pokemon_number": 118,
+    "to_pokemon_number": 119,
+    "evolution_trigger": "Level up",
+    "trigger_value": "33"
+  },
+  {
+    "from_pokemon_number": 120,
+    "to_pokemon_number": 121,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Water stone"
+  },
+  {
+    "from_pokemon_number": 129,
+    "to_pokemon_number": 130,
+    "evolution_trigger": "Level up",
+    "trigger_value": "20"
+  },
+  {
+    "from_pokemon_number": 133,
+    "to_pokemon_number": 134,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Water stone"
+  },
+  {
+    "from_pokemon_number": 133,
+    "to_pokemon_number": 135,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Thunder stone"
+  },
+  {
+    "from_pokemon_number": 133,
+    "to_pokemon_number": 136,
+    "evolution_trigger": "Use item",
+    "trigger_value": "Fire stone"
+  },
+  {
+    "from_pokemon_number": 138,
+    "to_pokemon_number": 139,
+    "evolution_trigger": "Level up",
+    "trigger_value": "40"
+  },
+  {
+    "from_pokemon_number": 140,
+    "to_pokemon_number": 141,
+    "evolution_trigger": "Level up",
+    "trigger_value": "40"
+  },
+  {
+    "from_pokemon_number": 147,
+    "to_pokemon_number": 148,
+    "evolution_trigger": "Level up",
+    "trigger_value": "30"
+  },
+  {
+    "from_pokemon_number": 148,
+    "to_pokemon_number": 149,
+    "evolution_trigger": "Level up",
+    "trigger_value": "55"
+  }
+]
