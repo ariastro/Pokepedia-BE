@@ -1,1 +1,1 @@
-rootProject.name = "sample_pokedex"
+rootProject.name = "pokepedia-be"
