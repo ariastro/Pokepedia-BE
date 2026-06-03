@@ -8,7 +8,7 @@ plugins {
 
 group = "dev.sws"
 version = "0.0.1-SNAPSHOT"
-description = "Sample Pokedex"
+description = "Pokedex"
 
 java {
     toolchain {

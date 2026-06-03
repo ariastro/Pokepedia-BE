@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SamplePokedexApplication
+class PokepediaApplication
 
 fun main(args: Array<String>) {
-    runApplication<SamplePokedexApplication>(*args)
+    runApplication<PokepediaApplication>(*args)
 }
