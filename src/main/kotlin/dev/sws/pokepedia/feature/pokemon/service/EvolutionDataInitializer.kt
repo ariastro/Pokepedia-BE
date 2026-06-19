@@ -18,7 +18,10 @@ class EvolutionDataInitializer(
 ) : CommandLineRunner {
 
     override fun run(vararg args: String) {
-        if (pokemonRepository.count() > 0) {
+        val pokemonCount = pokemonRepository.count()
+        val evolutionCount = pokemonRepository.countAllEvolutions()
+
+        if (pokemonCount > 0 && evolutionCount == 0L) {
             println("🔗 Linking Generation 1 evolutionary pathways...")
 
             try {
@@ -35,6 +38,8 @@ class EvolutionDataInitializer(
                 println("❌ Failed to bind evolution linkages: ${e.message}")
                 e.printStackTrace()
             }
+        } else if (evolutionCount > 0L) {
+            println("⏭️ Evolution lines already linked. Skipping initialization.")
         }
     }
 }

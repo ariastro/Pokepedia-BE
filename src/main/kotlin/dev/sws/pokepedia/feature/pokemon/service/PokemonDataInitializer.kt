@@ -3,12 +3,14 @@ package dev.sws.pokepedia.feature.pokemon.service
 import dev.sws.pokepedia.feature.pokemon.dto.PokemonRequest
 import dev.sws.pokepedia.feature.pokemon.repository.PokemonRepository
 import org.springframework.boot.CommandLineRunner
+import org.springframework.core.annotation.Order
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Component
 import tools.jackson.core.type.TypeReference
 import tools.jackson.databind.ObjectMapper
 
 @Component
+@Order(1)
 class PokemonDataInitializer(
     private val pokemonRepository: PokemonRepository,
     private val pokemonService: PokemonService,
